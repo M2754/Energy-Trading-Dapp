@@ -8,28 +8,26 @@ contract EnergyTrading {
         uint256 quantity;
     }
 
-    struct Bid {
-        address bidder;
-        uint256 pricePerUnit;
+    struct CarbonCreditOffer {
+        address seller;
+        uint256 pricePerCredit;
         uint256 quantity;
     }
 
     mapping(uint256 => Offer) public offers;
-    mapping(uint256 => Bid) public bids;
-    mapping(uint256 => uint256) public bidIdToLockedEther;
-    
+    mapping(uint256 => CarbonCreditOffer) public carbonCreditOffers;
     uint256 public offerId = 0;
-    uint256 public bidId = 0;
+    uint256 public carbonCreditOfferId = 0;
     uint256 public activeOfferCount = 0;
-    uint256 public activeBidCount = 0;
-    
+    uint256 public activeCarbonCreditOfferCount = 0;
     mapping(address => uint256) public energyBalance;
+    mapping(address => uint256) public carbonCredits;
 
     event OfferCreated(uint256 indexed offerId, address seller, uint256 pricePerUnit, uint256 quantity);
-    event BidCreated(uint256 indexed bidId, address bidder, uint256 pricePerUnit, uint256 quantity);
+    event CarbonCreditOfferCreated(uint256 indexed carbonCreditOfferId, address seller, uint256 pricePerCredit, uint256 quantity);
     event OfferPurchased(uint256 indexed offerId, address buyer, uint256 quantityPurchased);
-    event BidAccepted(uint256 indexed bidId, address seller, address buyer, uint256 quantity);
-    event BidCancelled(uint256 indexed bidId);
+    event CarbonCreditPurchased(uint256 indexed carbonCreditOfferId, address buyer, uint256 quantityPurchased);
+    event EnergyUpdated(address indexed user, uint256 newEnergyBalance, bool isRenewable);
 
     function createOffer(uint256 _pricePerUnit, uint256 _quantity) public {
         offers[offerId] = Offer(msg.sender, _pricePerUnit, _quantity);
@@ -38,15 +36,13 @@ contract EnergyTrading {
         offerId++;
     }
 
-    function createBid(uint256 _pricePerUnit, uint256 _quantity) public payable {
-        uint256 totalPrice = _pricePerUnit * _quantity;
-        require(msg.value == totalPrice, "Incorrect Ether sent");
-        
-        bids[bidId] = Bid(msg.sender, _pricePerUnit, _quantity);
-        bidIdToLockedEther[bidId] = msg.value;
-        activeBidCount++;
-        emit BidCreated(bidId, msg.sender, _pricePerUnit, _quantity);
-        bidId++;
+    function createCarbonCreditOffer(uint256 _pricePerCredit, uint256 _quantity) public {
+        require(carbonCredits[msg.sender] >= _quantity, "Not enough carbon credits");
+        carbonCredits[msg.sender] -= _quantity;
+        carbonCreditOffers[carbonCreditOfferId] = CarbonCreditOffer(msg.sender, _pricePerCredit, _quantity);
+        activeCarbonCreditOfferCount++;
+        emit CarbonCreditOfferCreated(carbonCreditOfferId, msg.sender, _pricePerCredit, _quantity);
+        carbonCreditOfferId++;
     }
 
     function purchaseOffer(uint256 _offerId, uint256 _quantity) public payable {
@@ -56,6 +52,7 @@ contract EnergyTrading {
         require(msg.value >= totalPrice, "Insufficient funds sent");
 
         offer.quantity -= _quantity;
+        energyBalance[offer.seller] -= _quantity;
         energyBalance[msg.sender] += _quantity;
 
         if (offer.quantity == 0) {
@@ -64,7 +61,6 @@ contract EnergyTrading {
         }
 
         payable(offer.seller).transfer(totalPrice);
-        
         if (msg.value > totalPrice) {
             payable(msg.sender).transfer(msg.value - totalPrice);
         }
@@ -72,60 +68,64 @@ contract EnergyTrading {
         emit OfferPurchased(_offerId, msg.sender, _quantity);
     }
 
-    function acceptBid(uint256 _bidId) public {
-        Bid storage bid = bids[_bidId];
-        require(bid.bidder != address(0), "Bid does not exist");
-        require(energyBalance[msg.sender] >= bid.quantity, "Insufficient energy");
-
-        uint256 lockedEther = bidIdToLockedEther[_bidId];
-        require(lockedEther > 0, "No locked Ether");
-
-        energyBalance[msg.sender] -= bid.quantity;
-        energyBalance[bid.bidder] += bid.quantity;
-
-        payable(msg.sender).transfer(lockedEther);
-
-        delete bids[_bidId];
-        delete bidIdToLockedEther[_bidId];
-        activeBidCount--;
-
-        emit BidAccepted(_bidId, msg.sender, bid.bidder, bid.quantity);
-    }
-
-    function cancelBid(uint256 _bidId) public {
-        Bid storage bid = bids[_bidId];
-        require(bid.bidder == msg.sender, "Not the bidder");
-        uint256 lockedEther = bidIdToLockedEther[_bidId];
-        require(lockedEther > 0, "No locked Ether");
-
-        payable(msg.sender).transfer(lockedEther);
-
-        delete bids[_bidId];
-        delete bidIdToLockedEther[_bidId];
-        activeBidCount--;
-
-        emit BidCancelled(_bidId);
-    }
-
-    function getOfferCount() public view returns (uint256) {
-        return activeOfferCount;
-    }
-
-    function getBidCount() public view returns (uint256) {
-        return activeBidCount;
-    }
-
     function getOfferDetails(uint256 _offerId) public view returns (address, uint256, uint256) {
         Offer storage offer = offers[_offerId];
         return (offer.seller, offer.pricePerUnit, offer.quantity);
     }
 
-    function getBidDetails(uint256 _bidId) public view returns (address, uint256, uint256, uint256) {
-        Bid storage bid = bids[_bidId];
-        return (bid.bidder, bid.pricePerUnit, bid.quantity, bidIdToLockedEther[_bidId]);
+    function getCarbonCreditOfferDetails(uint256 _carbonCreditOfferId) public view returns (address, uint256, uint256) {
+       CarbonCreditOffer storage offer = carbonCreditOffers[_carbonCreditOfferId];
+        return (offer.seller, offer.pricePerCredit, offer.quantity);
     }
+
+
+    function purchaseCarbonCredit(uint256 _carbonCreditOfferId, uint256 _quantity) public payable {
+        CarbonCreditOffer storage offer = carbonCreditOffers[_carbonCreditOfferId];
+        require(offer.quantity >= _quantity, "Not enough carbon credits available");
+        uint256 totalPrice = offer.pricePerCredit * _quantity;
+        require(msg.value >= totalPrice, "Insufficient funds sent");
+
+        offer.quantity -= _quantity;
+        carbonCredits[offer.seller]-=_quantity;
+        carbonCredits[msg.sender] += _quantity;
+
+        if (offer.quantity == 0) {
+            delete carbonCreditOffers[_carbonCreditOfferId];
+            activeCarbonCreditOfferCount--;
+        }
+
+        payable(offer.seller).transfer(totalPrice);
+        if (msg.value > totalPrice) {
+            payable(msg.sender).transfer(msg.value - totalPrice);
+        }
+
+        emit CarbonCreditPurchased(_carbonCreditOfferId, msg.sender, _quantity);
+    }
+
+    function updateNonRenewableEnergy(address user, uint256 amount) public {
+        energyBalance[user] += amount;
+        emit EnergyUpdated(user, energyBalance[user], false);
+    }
+
+    function updateRenewableEnergy(address user, uint256 amount, uint256 carbonCreditAmount) public {
+        energyBalance[user] += amount;
+        carbonCredits[user] += carbonCreditAmount;
+        emit EnergyUpdated(user, energyBalance[user], true);
+    }
+
+    function getOfferCount() public view returns (uint256) {
+        return activeOfferCount;
+    }
+    function getCarbonCreditOfferCount() public view returns (uint256) {
+        return activeCarbonCreditOfferCount;
+    }
+
 
     function getEnergyBalance(address user) public view returns (uint256) {
         return energyBalance[user];
+    }
+
+    function getCarbonCredits(address user) public view returns (uint256) {
+        return carbonCredits[user];
     }
 }
