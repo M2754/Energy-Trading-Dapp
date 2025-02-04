@@ -44,34 +44,24 @@ Ensure you have the following installed:
 
 ## Smart Contract Deployment
 ### Compile and Deploy on Sepolia Testnet
-1. Install Hardhat dependencies:
-   ```sh
-   npm install --save-dev hardhat ethers
-   ```
-2. Compile the smart contract:
-   ```sh
-   npx hardhat compile
-   ```
+1. Open Remix IDE
+2. Paste the given code and compile
 3. Deploy the contract on Sepolia Testnet:
-   ```sh
-   npx hardhat run scripts/deploy.js --network sepolia
-   ```
-4. Verify deployment:
-   ```sh
-   npx hardhat verify --network sepolia <deployed_contract_address>
-   ```
+4. Verify deployment on etherscan
 
 ## Usage Guide
 ### Connecting to the Platform
 1. Open the web app in your browser.
 2. Click on **Connect Wallet** to link MetaMask.
 3. Choose your role: **Producer** (sell energy) or **Consumer** (buy energy/carbon credits).
+4. Once Role is chosen, it cannot be changed.
 
 ### For Producers:
 1. Navigate to the **Producer Dashboard**.
-2. Enter energy amount and set a price per unit.
-3. Click **Create Offer** to list your energy for sale.
-4. Monitor offers and complete transactions when a buyer purchases.
+2. Users are currently allowed to manually update the energy, but this feature is added mainly for IoT integration.
+3. Enter energy amount and set a price per unit.
+4. Click **Create Offer** to list your energy for sale.
+5. Monitor offers and complete transactions when a buyer purchases.
 
 ### For Consumers:
 1. Go to the **Consumer Dashboard**.
@@ -79,13 +69,10 @@ Ensure you have the following installed:
 3. Click **Purchase** and confirm the transaction in MetaMask.
 4. View your updated energy and carbon credit balances.
 
-## Security and Best Practices
-- **Private Key Management:** Never expose private keys; use `.env` for secure storage.
-- **Gas Fee Optimization:** Transactions are optimized for cost efficiency.
-- **Contract Security:** Follows best practices with input validation and access control.
 
 ## Future Enhancements
 - Integration with **Layer 2 solutions** for lower transaction costs.
+   - Already made and deployed zkSNARK verifier, but the Dapp is not working upon integration ([a relative link] ./withZKSnark)
 - Advanced analytics dashboard for tracking energy trades.
 - Cross-chain compatibility to expand the trading ecosystem.
 
