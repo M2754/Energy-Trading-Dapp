@@ -31,7 +31,7 @@ const EnergyDisplay = () => {
 
     return (
         <div>
-            <p>Your Energy Balance: {energy} units</p>
+            <p>Your Energy Balance: {energy} KWh</p>
         </div>
     );
 };
