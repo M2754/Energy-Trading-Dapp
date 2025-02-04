@@ -3,11 +3,11 @@ import { Web3Context } from '../contexts/Web3Context';
 
 const Auth = () => {
   const { connectWallet, account, disconnectWallet } = useContext(Web3Context);
-  const [role, setRole] = useState('');
+  // const [role, setRole] = useState('');
 
-  const handleRoleSelect = (selectedRole) => {
-    setRole(selectedRole);
-  };
+  // const handleRoleSelect = (selectedRole) => {
+  //   setRole(selectedRole);
+  // };
   return (
     <div>
         {!account ? (
@@ -16,7 +16,7 @@ const Auth = () => {
         <>
           <p>Connected with {account}</p>
           <button onClick={disconnectWallet}>Disconnect</button>
-          {role ? (
+          {/* {role ? (
             <p>Role: {role}</p>
         ) : (
             <>
@@ -24,7 +24,7 @@ const Auth = () => {
             <button onClick={() => handleRoleSelect('producer')}>Producer</button>
             <button onClick={() => handleRoleSelect('consumer')}>Consumer</button>
             </>
-        )}
+        )} */}
         </>
       )}
     </div>
