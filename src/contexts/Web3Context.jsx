@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
 import EnergyTrading from '../utils/EnergyTrading.json'; // Import ABI
 //const provider = new ethers.providers.Web3Provider(window.ethereum);
-const contractAddress = '0xEEaFA80184Fb41eC2BDD54A219710E381a3541A5';  // Replace with your contract address
+const contractAddress = '0x96Ace2288724Bb6cE1bA1c878089F3a4eB0b6afa';  // Replace with your contract address
 const Web3Context = createContext();
 
 const Web3Provider = ({ children }) => {
