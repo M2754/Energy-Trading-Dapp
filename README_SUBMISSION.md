@@ -13,7 +13,7 @@ The Energy Trading Platform is a decentralized application (DApp) built on Ether
 - **Fast and Low-Cost Transactions:** Designed to minimize gas fees while maintaining efficiency.
 
 ## Tech Stack
-- **Frontend:** React.js with Tailwind CSS for styling
+- **Frontend:** React.js 
 - **Blockchain:** Ethereum Smart Contracts (Solidity), Remix IDE
 - **Backend Services:** React.js
 - **Libraries:** Web3.js, ethers.js
