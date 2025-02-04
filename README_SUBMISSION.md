@@ -14,10 +14,9 @@ The Energy Trading Platform is a decentralized application (DApp) built on Ether
 
 ## Tech Stack
 - **Frontend:** React.js with Tailwind CSS for styling
-- **Blockchain:** Ethereum Smart Contracts (Solidity)
-- **Backend Services:** Node.js and Express.js (if needed for off-chain functionalities)
-- **Libraries:** Web3.js, ethers.js, Hardhat for contract development
-- **Database (Optional):** IPFS or The Graph for decentralized data indexing
+- **Blockchain:** Ethereum Smart Contracts (Solidity), Remix IDE
+- **Backend Services:** React.js
+- **Libraries:** Web3.js, ethers.js
 
 ## Installation
 ### Prerequisites
@@ -25,7 +24,7 @@ Ensure you have the following installed:
 - Node.js (v16 or later)
 - npm or yarn
 - MetaMask browser extension
-- Hardhat (for contract deployment)
+
 
 ### Steps to Set Up
 1. Clone the repository:
