@@ -54,7 +54,7 @@ Ensure you have the following installed:
 1. Open the web app in your browser.
 2. Click on **Connect Wallet** to link MetaMask.
 3. Choose your role: **Producer** (sell energy) or **Consumer** (buy energy/carbon credits).
-4. Once Role is chosen, it cannot be changed.
+4. Once Role is chosen, it cannot be changed, for making sure same guy does not buy and sell energy from himslef, burdening the blockchain, In future, we will link user with their unique ids like Producer License, thus making sure no illegal selling of energy happens.
 
 ### For Producers:
 1. Navigate to the **Producer Dashboard**.
@@ -75,6 +75,8 @@ Ensure you have the following installed:
    - Already made and deployed zkSNARK verifier, but the Dapp is not working upon integration ([withZKSnark](withZKSnark))
 - Advanced analytics dashboard for tracking energy trades.
 - Cross-chain compatibility to expand the trading ecosystem.
+- Allowing Energy Storehouses to be part of grid for storage of energy (Creating different portal for them)
+- Transaction Records to be stored on IPFS and displayed on user portal.
 
 ## License
 This project is licensed under the MIT License. Feel free to contribute and enhance the platform!
