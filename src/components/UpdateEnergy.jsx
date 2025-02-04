@@ -7,6 +7,25 @@ const UpdateEnergy = () => {
     const [isRenewable, setIsRenewable] = useState(false);
     const [carbonCredits, setCarbonCredits] = useState('');
 
+    // Handle amount change and update carbon credits dynamically
+    const handleAmountChange = (e) => {
+        const value = e.target.value;
+        setAmount(value);
+        if (isRenewable) {
+            setCarbonCredits(value ? value / 10 : '');
+        }
+    };
+
+    // Handle renewable checkbox change
+    const handleRenewableChange = (e) => {
+        setIsRenewable(e.target.checked);
+        if (e.target.checked && amount) {
+            setCarbonCredits(amount / 10);
+        } else {
+            setCarbonCredits('');
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -25,6 +44,7 @@ const UpdateEnergy = () => {
             }
         } catch (error) {
             console.error('Error updating energy:', error);
+            alert('Failed to update energy. Check the console for details.');
         }
     };
 
@@ -32,11 +52,11 @@ const UpdateEnergy = () => {
         <div>
             <h3>Update Energy</h3>
             <form onSubmit={handleSubmit}>
-                <label>Amount of Energy (units):
+                <label>Amount of Energy (KWh):
                     <input
                         type="number"
                         value={amount}
-                        onChange={e => setAmount(e.target.value)}
+                        onChange={handleAmountChange}
                         required
                     />
                 </label>
@@ -44,7 +64,7 @@ const UpdateEnergy = () => {
                     <input
                         type="checkbox"
                         checked={isRenewable}
-                        onChange={e => setIsRenewable(e.target.checked)}
+                        onChange={handleRenewableChange}
                     />
                     Is Renewable Energy
                 </label>
@@ -53,8 +73,7 @@ const UpdateEnergy = () => {
                         <input
                             type="number"
                             value={carbonCredits}
-                            onChange={e => setCarbonCredits(e.target.value)}
-                            required
+                            readOnly
                         />
                     </label>
                 )}
