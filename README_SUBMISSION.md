@@ -68,7 +68,14 @@ Ensure you have the following installed:
 3. Click **Purchase** and confirm the transaction in MetaMask.
 4. View your updated energy and carbon credit balances.
 
-
+## IoT Integration:
+1. Realtime updating of Energy Balance using UpdateEnergy function, (can be implemented on layer2 as well, would increase the speed)
+2. The logs of machine will be stored on ipfs, and if any user complains about anomaly related to any particular producer, the 
+3. Trading will be automated, once offer accepted, the buyer and seller device will be linked, capping the energy transfer.
+4. Energy Storage will also become autonomous, as soon as a storage house reaches its capacity, the smart meter can redirect the the energy to different storehouse.
+5. Automatic creation of Carbon Credits and checking of carbon limits.
+6. In future, AI agents with smart meters can be used for price controling.
+ 
 ## Future Enhancements
 - Integration with **Layer 2 solutions** for lower transaction costs.
    - Already made and deployed zkSNARK verifier, but the Dapp is not working upon integration ([withZKSnark](withZKSnark))
