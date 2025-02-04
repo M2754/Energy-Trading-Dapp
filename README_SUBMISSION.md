@@ -72,7 +72,7 @@ Ensure you have the following installed:
 
 ## Future Enhancements
 - Integration with **Layer 2 solutions** for lower transaction costs.
-   - Already made and deployed zkSNARK verifier, but the Dapp is not working upon integration ([a relative link] ./withZKSnark)
+   - Already made and deployed zkSNARK verifier, but the Dapp is not working upon integration ([withZKSnark](withZKSnark))
 - Advanced analytics dashboard for tracking energy trades.
 - Cross-chain compatibility to expand the trading ecosystem.
 
