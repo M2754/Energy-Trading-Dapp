@@ -16,7 +16,7 @@ const ProducerPortal = () => {
                 <Loading />
             ) : (
                 <>
-                    <h2 className="portal-title">Welcome to Dihing Energy Trading DApp</h2>
+                    <h2 className="portal-title">Welcome to Dihing Energy Trading App</h2>
                     <h2 className="portal-subtitle">Producer Portal</h2>
                     <div className="dashboard">
                         <EnergyDisplay />

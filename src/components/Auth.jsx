@@ -7,7 +7,7 @@ const Auth = () => {
 
   return (
     <div className="portal-container auth-container">
-      <h2 className="auth-title">Welcome to Dihing Energy Trading DApp</h2>
+      <h2 className="auth-title">Welcome to Dihing Energy Trading App</h2>
       {!account ? (
         <button className="auth-connect-btn" onClick={connectWallet}>
           Connect MetaMask
