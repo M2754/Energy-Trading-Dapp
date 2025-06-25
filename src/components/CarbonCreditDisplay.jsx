@@ -29,8 +29,9 @@ const CarbonCreditDisplay = () => {
     }
 
     return (
-        <div>
-            <p>Your Carbon Credit Balance: {carbonCredits} credits</p>
+        <div className="carbon-credit-display-card">
+            <h3 className="carbon-credit-display-title">Carbon Credit Balance</h3>
+            <p className="carbon-credit-balance-value">{carbonCredits} <span className="carbon-credit-unit">credits</span></p>
         </div>
     );
 };

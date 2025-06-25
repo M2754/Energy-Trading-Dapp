@@ -1,31 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Web3Context } from '../contexts/Web3Context';
+import './Auth.css';
 
 const Auth = () => {
   const { connectWallet, account, disconnectWallet } = useContext(Web3Context);
-  // const [role, setRole] = useState('');
 
-  // const handleRoleSelect = (selectedRole) => {
-  //   setRole(selectedRole);
-  // };
   return (
-    <div>
-        {!account ? (
-        <button onClick={connectWallet}>Connect MetaMask</button>
+    <div className="portal-container auth-container">
+      <h2 className="auth-title">Welcome to Dihing Energy Trading DApp</h2>
+      {!account ? (
+        <button className="auth-connect-btn" onClick={connectWallet}>
+          Connect MetaMask
+        </button>
       ) : (
-        <>
-          <p>Connected with {account}</p>
-          <button onClick={disconnectWallet}>Disconnect</button>
-          {/* {role ? (
-            <p>Role: {role}</p>
-        ) : (
-            <>
-            <p>Select a Role:</p>
-            <button onClick={() => handleRoleSelect('producer')}>Producer</button>
-            <button onClick={() => handleRoleSelect('consumer')}>Consumer</button>
-            </>
-        )} */}
-        </>
+        <div className="auth-dashboard">
+          <p className="auth-connected-info">
+            Connected with <strong>{account}</strong>
+          </p>
+          <button className="auth-disconnect-btn" onClick={disconnectWallet}>
+            Disconnect
+          </button>
+        </div>
       )}
     </div>
   );

@@ -7,7 +7,6 @@ const UpdateEnergy = () => {
     const [isRenewable, setIsRenewable] = useState(false);
     const [carbonCredits, setCarbonCredits] = useState('');
 
-    // Handle amount change and update carbon credits dynamically
     const handleAmountChange = (e) => {
         const value = e.target.value;
         setAmount(value);
@@ -16,7 +15,6 @@ const UpdateEnergy = () => {
         }
     };
 
-    // Handle renewable checkbox change
     const handleRenewableChange = (e) => {
         setIsRenewable(e.target.checked);
         if (e.target.checked && amount) {
@@ -37,39 +35,40 @@ const UpdateEnergy = () => {
                     transaction = await contract.updateNonRenewableEnergy(account, amount);
                 }
                 await transaction.wait();
-                console.log('Energy updated successfully');
                 alert('Energy updated successfully!');
                 setAmount('');
                 setCarbonCredits('');
             }
         } catch (error) {
-            console.error('Error updating energy:', error);
             alert('Failed to update energy. Check the console for details.');
         }
     };
 
     return (
-        <div>
-            <h3>Update Energy</h3>
-            <form onSubmit={handleSubmit}>
-                <label>Amount of Energy (KWh):
+        <div className="update-energy-card">
+            <h3 className="update-energy-title">Update Energy</h3>
+            <form className="update-energy-form" onSubmit={handleSubmit}>
+                <label>
+                    <span>Amount (KWh):</span>
                     <input
                         type="number"
                         value={amount}
                         onChange={handleAmountChange}
                         required
+                        min="0"
                     />
                 </label>
-                <label>
+                <label className="renewable-checkbox">
                     <input
                         type="checkbox"
                         checked={isRenewable}
                         onChange={handleRenewableChange}
-                    />
-                    Is Renewable Energy
+                    /> 
+                    Is Renewable
                 </label>
                 {isRenewable && (
-                    <label>Carbon Credits:
+                    <label>
+                        <span>Carbon Credits:</span>
                         <input
                             type="number"
                             value={carbonCredits}
@@ -77,7 +76,7 @@ const UpdateEnergy = () => {
                         />
                     </label>
                 )}
-                <button type="submit">Update Energy</button>
+                <button className="update-energy-btn" type="submit">Update</button>
             </form>
         </div>
     );

@@ -23,24 +23,30 @@ const OfferForm = () => {
     };
 
     return (
-        <div>
-            <h3>Create New Offer</h3>
-            <form onSubmit={handleSubmit}>
-                <label>Price per unit (Wei):
+        <div className="offer-form-card">
+            <h3 className="offer-form-title">Create New Offer</h3>
+            <form className="offer-form" onSubmit={handleSubmit}>
+                <label>
+                    <span>Price per unit (Wei):</span>
                     <input
                         type="number"
                         value={price}
                         onChange={e => setPrice(e.target.value)}
+                        required
+                        min="0"
                     />
                 </label>
-                <label>Quantity:
+                <label>
+                    <span>Quantity:</span>
                     <input
                         type="number"
                         value={quantity}
                         onChange={e => setQuantity(e.target.value)}
+                        required
+                        min="0"
                     />
                 </label>
-                <button type="submit">Create Offer</button>
+                <button className="offer-form-btn" type="submit">Create Offer</button>
             </form>
         </div>
     );

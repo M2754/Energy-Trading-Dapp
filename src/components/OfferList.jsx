@@ -22,7 +22,7 @@ const OfferList = () => {
                     const offersWithId = offerDetails.map((offer, index) => ({
                         id: index,
                         seller: offer[0],
-                        pricePerUnit: offer[1].toString(), // Wei (as string)
+                        pricePerUnit: offer[1].toString(),
                         quantity: offer[2].toString(),
                     }));
 
@@ -40,22 +40,15 @@ const OfferList = () => {
 
     const handlePurchase = async (offerId, pricePerUnit) => {
         try {
-            // Prompt user for how many units they want to buy
             const quantityInput = prompt('Enter quantity to buy:');
-            
-            // If user cancels or enters nothing, just return
             if (!quantityInput) return;
-            
-            // Convert to a BigInt to avoid overflow if dealing with large numbers
-            const quantityToBuy = (quantityInput);
-
-            // pricePerUnit is a string, convert it to BigInt as well
-            const totalPrice = (pricePerUnit) * quantityToBuy;
+            const quantityToBuy = quantityInput;
+            const totalPrice = pricePerUnit * quantityToBuy;
 
             const transaction = await contract.purchaseOffer(
                 offerId,
-                quantityToBuy, 
-                { value: totalPrice.toString() }  // must be a string for Ethers
+                quantityToBuy,
+                { value: totalPrice.toString() }
             );
 
             await transaction.wait();
@@ -71,16 +64,17 @@ const OfferList = () => {
     }
 
     return (
-        <div>
-            <h3>Available Offers</h3>
+        <div className="offer-list-card">
+            <h3 className="offer-list-title">Available Offers</h3>
             {offers.length > 0 ? (
                 offers.map((offer) => (
-                    <div key={offer.id}>
-                        <p>Seller: {offer.seller.substring(0, 6)}...{offer.seller.slice(-4)}</p>
-                        <p>Price: {offer.pricePerUnit} Wei/unit</p>
-                        <p>Quantity: {offer.quantity} units</p>
+                    <div className="offer-card" key={offer.id}>
+                        <p><strong>Seller:</strong> {offer.seller.substring(0, 6)}...{offer.seller.slice(-4)}</p>
+                        <p><strong>Price:</strong> {offer.pricePerUnit} Wei/unit</p>
+                        <p><strong>Quantity:</strong> {offer.quantity} units</p>
                         {account && (
                             <button
+                                className="offer-btn"
                                 onClick={() => handlePurchase(offer.id, offer.pricePerUnit)}
                             >
                                 Purchase
@@ -89,7 +83,10 @@ const OfferList = () => {
                     </div>
                 ))
             ) : (
-                <p>No offers available.</p>
+                <p>No offers available.
+                    {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab deleniti voluptas repudiandae tenetur quisquam dignissimos accusantium et cumque. Eius, vitae soluta itaque quisquam unde mollitia dolores facilis perspiciatis asperiores tempore. */}
+                    {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita voluptas dicta exercitationem, eum ad ipsa consequatur veniam minus, saepe aspernatur deserunt deleniti perspiciatis ratione optio non, aperiam ea maiores beatae? */}
+                </p>
             )}
         </div>
     );

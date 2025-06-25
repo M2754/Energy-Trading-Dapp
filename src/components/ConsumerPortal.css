@@ -1,0 +1,229 @@
+.portal-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f8;
+    min-height: 100vh;
+    min-width: 80%;
+    overflow-x: hidden;
+    /* Sidebar removed for cleaner look */
+}
+
+.portal-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #364f69;
+    margin-bottom: 30px;
+}
+
+.dashboard {
+    display: flex;
+    gap: px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.offers-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dashboard > * , .offers-section > * {
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 300px;
+    flex: 1 1 40%;
+    transition: transform 0.2s ease-in-out;
+    overflow: auto; /* Allow scroll inside cards if content overflows */
+    word-break: break-word; /* Break long words/addresses */
+}
+
+.dashboard > *:hover, .offers-section > *:hover {
+    transform: translateY(-5px);
+}
+
+/* CarbonCreditOfferList styles */
+.carbon-offer-list-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 240px;
+    margin-bottom: 10px;
+    overflow: auto;
+    word-break: break-word;
+}
+
+.carbon-offer-list-title {
+    font-size: 1.15rem;
+    color: #364f69;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.carbon-offer-card {
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    background: #f8fafb;
+    box-shadow: 0 2px 6px rgba(54, 79, 105, 0.04);
+    overflow: auto;
+    word-break: break-word;
+}
+
+.carbon-offer-card p {
+    margin: 4px 0;
+    font-size: 0.98rem;
+}
+
+.carbon-offer-btn {
+    background: #364f69;
+    color: #fff;
+    border: none;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.carbon-offer-btn:hover {
+    background: #22334a;
+}
+
+/* OfferList styles */
+.offer-list-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 240px;
+    margin-bottom: 10px;
+    overflow: auto;
+    word-break: break-word;
+}
+
+.offer-list-title {
+    font-size: 1.15rem;
+    color: #364f69;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.offer-card {
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    background: #f8fafb;
+    box-shadow: 0 2px 6px rgba(54, 79, 105, 0.04);
+    overflow: auto;
+    word-break: break-word;
+}
+
+.offer-card p {
+    margin: 4px 0;
+    font-size: 0.98rem;
+}
+
+.offer-btn {
+    background: #364f69;
+    color: #fff;
+    border: none;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.offer-btn:hover {
+    background: #22334a;
+}
+
+.connected-info {
+    overflow-x: auto;
+    word-break: break-all;
+    max-width: 100%;
+}
+
+/* Carbon Credit Display styles */
+.carbon-credit-display-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.carbon-credit-display-title {
+    font-size: 1.08rem;
+    color: #364f69;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.carbon-credit-balance-value {
+    font-size: 1.5rem;
+    color: #222;
+    font-weight: 600;
+}
+
+.carbon-credit-unit {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 400;
+}
+
+.energy-display-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    overflow: auto;
+    word-break: break-word;
+}
+
+.energy-display-title {
+    font-size: 1.08rem;
+    color: #364f69;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.energy-balance-value {
+    font-size: 1.5rem;
+    color: #222;
+    font-weight: 600;
+}
+
+.energy-unit {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 400;
+}
+
+
+@media (max-width: 768px) {
+    .dashboard > *, .offers-section > * {
+        flex: 1 1 100%;
+    }
+}
+

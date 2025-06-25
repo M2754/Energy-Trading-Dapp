@@ -23,24 +23,32 @@ const CarbonCreditForm = () => {
     };
 
     return (
-        <div>
-            <h3>Create Carbon Credit Offer</h3>
-            <form onSubmit={handleSubmit}>
-                <label>Price per credit (Wei):
+        <div className="carbon-credit-form-card">
+            <h3 className="carbon-credit-form-title">Create Carbon Credit Offer</h3>
+            <form className="carbon-credit-form" onSubmit={handleSubmit}>
+                <label>
+                    <span>Price per credit (Wei):</span>
                     <input
                         type="number"
                         value={price}
                         onChange={e => setPrice(e.target.value)}
+                        required
+                        min="0"
                     />
                 </label>
-                <label>Quantity:
+                <label>
+                    <span>Quantity:</span>
                     <input
                         type="number"
                         value={quantity}
                         onChange={e => setQuantity(e.target.value)}
+                        required
+                        min="0"
                     />
                 </label>
-                <button type="submit">Create Carbon Credit Offer</button>
+                <button className="carbon-credit-form-btn" type="submit">
+                    Create Carbon Credit Offer
+                </button>
             </form>
         </div>
     );

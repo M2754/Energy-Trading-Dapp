@@ -53,15 +53,15 @@ const CarbonCreditOfferList = () => {
     }
 
     return (
-        <div>
-            <h3>Available Carbon Credit Offers</h3>
+        <div className="carbon-offer-list-card">
+            <h3 className="carbon-offer-list-title">Available Carbon Credit Offers</h3>
             {carbonCreditOffers.length > 0 ? (
                 carbonCreditOffers.map(offer => (
-                    <div key={offer.id}>
-                        <p>Seller: {offer.seller.substring(0, 6)}...{offer.seller.slice(-4)}</p>
-                        <p>Price: {offer.pricePerCredit} Wei/credit</p>
-                        <p>Quantity: {offer.quantity} credits</p>
-                        {account && <button onClick={() => handlePurchase(offer.id, offer.pricePerCredit, offer.quantity)}>
+                    <div className="carbon-offer-card" key={offer.id}>
+                        <p><strong>Seller:</strong> {offer.seller.substring(0, 6)}...{offer.seller.slice(-4)}</p>
+                        <p><strong>Price:</strong> {offer.pricePerCredit} Wei/credit</p>
+                        <p><strong>Quantity:</strong> {offer.quantity} credits</p>
+                        {account && <button className="carbon-offer-btn" onClick={() => handlePurchase(offer.id, offer.pricePerCredit, offer.quantity)}>
                             Purchase
                         </button>}
                     </div>

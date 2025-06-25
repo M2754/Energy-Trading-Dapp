@@ -36,3 +36,66 @@
     transform: rotate(360deg);
   }
 }
+
+.appContainer {
+    min-height: 100vh;
+    background: #f4f6f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 24px 10px;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 28px 32px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.title {
+    font-size: 1.3rem;
+    color: #364f69;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.roleButtons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.button {
+     background: #364f69;
+    color: #fff;
+    border: none;
+    padding: 12px 0;
+    border-radius: 6px;
+    font-size: 1.08rem;
+    cursor: pointer;
+    margin: 12px auto 0 auto; /* Center horizontally and add top margin */
+    width: 70%;               /* Make button wider */
+    display: block;           /* Ensure margin auto works */
+    transition: background 0.2s;
+}
+
+
+.button:hover {
+    background: #22334a;
+}
+
+.loading {
+    font-size: 1.1rem;
+    color: #364f69;
+    text-align: center;
+    margin-top: 40px;
+}

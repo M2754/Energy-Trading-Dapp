@@ -1,0 +1,272 @@
+.portal-container {
+    /* padding */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f8;
+    /* background: #232323; */
+    min-height: 100vh;
+    min-width: 320px;
+}
+
+.portal-title {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #f4f6f8;
+    text-align: center;
+    font-size: 2.2rem;
+    color: #364f69;
+    margin-bottom: 10px;
+    padding: 18px 0 10px 0;
+}
+
+.portal-subtitle {
+    text-align: center;
+    font-size: 2.3rem;
+    color: #364f69;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.producer-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dashboard > *, .producer-actions > * {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 300px;
+    flex: 1 1 40%;
+    transition: transform 0.2s;
+}
+
+.dashboard > *:hover, .producer-actions > *:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .dashboard > *, .producer-actions > * {
+        flex: 1 1 100%;
+    }
+}
+
+.update-energy-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+.update-energy-title {
+    font-size: 1.15rem;
+    color: #364f69;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.update-energy-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.98rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.update-energy-form input[type="number"] {
+    margin-top: 4px;
+    padding: 6px 10px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f8fafb;
+}
+
+.renewable-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.update-energy-form input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.update-energy-btn {
+    background: #364f69;
+    color: #fff;
+    border: none;
+    padding: 12px 0;
+    border-radius: 6px;
+    font-size: 1.08rem;
+    cursor: pointer;
+    margin: 12px auto 0 auto; /* Center horizontally and add top margin */
+    width: 70%;               /* Make button wider */
+    display: block;           /* Ensure margin auto works */
+    transition: background 0.2s;
+}
+
+.update-energy-btn:hover {
+    background: #22334a;
+}
+
+.carbon-credit-form-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+.carbon-credit-form-title {
+    font-size: 1.15rem;
+    color: #364f69;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.carbon-credit-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.98rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.carbon-credit-form label span {
+    margin-bottom: 4px;
+}
+
+.carbon-credit-form input[type="number"] {
+    padding: 6px 10px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f8fafb;
+}
+
+.carbon-credit-form-btn {
+    background: #364f69;
+    color: #fff;
+    border: none;
+    padding: 10px 0;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    margin: 12px auto 0 auto;
+    width: 70%;
+    display: block;
+    transition: background 0.2s;
+}
+
+.carbon-credit-form-btn:hover {
+    background: #22334a;
+}
+
+/* OfferForm styles */
+.offer-form-card {
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+.offer-form-title {
+    font-size: 1.15rem;
+    color: #364f69;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.offer-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.98rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.offer-form label span {
+    margin-bottom: 4px;
+}
+
+.offer-form input[type="number"] {
+    padding: 6px 10px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f8fafb;
+}
+
+.offer-form-btn {
+    background: #364f69;
+    color: #fff;
+    border: none;
+    padding: 10px 0;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    margin: 12px auto 0 auto;
+    width: 70%;
+    display: block;
+    transition: background 0.2s;
+}
+
+.portal-container,
+.dashboard,
+.producer-actions,
+.dashboard > *,
+.producer-actions > * {
+    scrollbar-width: thin;              /* Firefox */
+    scrollbar-color: #d0d7de #f4f6f8;   /* Firefox */
+}
+
+.portal-container::-webkit-scrollbar,
+.dashboard::-webkit-scrollbar,
+.producer-actions::-webkit-scrollbar,
+.dashboard > *::-webkit-scrollbar,
+.producer-actions > *::-webkit-scrollbar {
+    width: 6px;
+    background: #f4f6f8;
+}
+
+.portal-container::-webkit-scrollbar-thumb,
+.dashboard::-webkit-scrollbar-thumb,
+.producer-actions::-webkit-scrollbar-thumb,
+.dashboard > *::-webkit-scrollbar-thumb,
+.producer-actions > *::-webkit-scrollbar-thumb {
+    background: #d0d7de;
+    border-radius: 6px;
+}
+
+.offer-form-btn:hover {
+    background: #22334a;
+}
+
